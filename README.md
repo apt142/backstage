@@ -90,6 +90,10 @@ The admin interface has access to browse the data. This could use more refinemen
 http://localhost:8000/admin/
 
 
+The form to use the API and see the results
+http://localhost:8000
+
+
 The API to calculate the difference
 http://localhost:8000/difference?number=n  Where `n` is less than or equal to 100
 
@@ -104,7 +108,7 @@ This project was initialized off of [Docker Django Example](https://github.com/n
 
 First off, there's a lot of boiler plate to getting a django instance running locally on docker. I wanted to go straight to a dockerized instance so that my code has maximum portability. 
 
-I wanted to give you an package that was easy to install and wouldn't interfere with anythign you've already install on your system. Containers ensure that correct versions of requirements are followed and don't collide with globally installed packages.
+I wanted to give you a package that was easy to install and wouldn't interfere with anything you've already install on your system. Containers ensure that correct versions of requirements are followed and don't collide with globally installed packages.
 
 
 The initial bare bones are the following:
@@ -155,6 +159,12 @@ You'll still need to run migrations after the containers start up.
 ./run manage migrate
 ```
 
+And you'll need this to get the front end working
+
+```
+./run manage collectstatic
+```
+
 
 #### The .env file
 
@@ -172,6 +182,8 @@ For now, this is a no-op!
 
 
 #### Build and Run Docker
+The install did this earlier. But in case you shut down the container and you need to run it again, here's a quick command:
+
 ```
 docker compose up --build
 ```
@@ -179,13 +191,7 @@ docker compose up --build
 Once docker has initalized and is running you can visit the project at: <http://localhost:8000>
 
 
-#### Initialize your environment
-
-The first thing you'll want to do is run your migrations
-
-```
-./run manage migrate
-```
+#### Admin set up
 
 If you want to visit the admin pages, you'll need to new super user. So, run this.
 ```
@@ -230,13 +236,3 @@ Run Django commands:
 ./run manage test
 ```
 
-
-## Next Steps
-
-### Scalability
-
-### Production Readiness
-
-### Testing
-
-### Additional endpoints

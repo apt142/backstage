@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from calculations.models import DifferenceRequestLog
+
+admin.site.register(DifferenceRequestLog)
