@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+from calculations.utils import is_pythagorean_triplet
 from calculations.utils import square_of_the_sum
 from calculations.utils import sum_of_the_squares
 from calculations.views import get_request_count
@@ -27,6 +28,40 @@ class TestSquareOfSums(TestCase):
         ]
         for pair in values:
             self.assertEqual(square_of_the_sum(pair[0]), pair[1])
+
+
+class TestIsPythagoreanTriplet(TestCase):
+    def test_values(self):
+        values = [
+            {
+                "a": 2,
+                "b": 3,
+                "c": 4,
+                "is_pythagorean": False,
+            },
+            {
+                "a": 3,
+                "b": 4,
+                "c": 5,
+                "is_pythagorean": True,
+            },
+            {
+                "a": 1,
+                "b": 10,
+                "c": 6,
+                "is_pythagorean": False,
+            },
+        ]
+
+        for test_set in values:
+            self.assertEqual(
+                is_pythagorean_triplet(
+                    test_set["a"], test_set["b"], test_set["c"]
+                ),
+                test_set["is_pythagorean"],
+                f"{test_set['a']} ^2 + {test_set['b']}^2 = {test_set['c']}^2"
+                " is {test_set['is_pythagorean']}",
+            )
 
 
 class TestDifferenceView(TestCase):
