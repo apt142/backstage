@@ -143,6 +143,15 @@ git clone git@github.com:apt142/backstage.git
 cd backstage
 ```
 
+I've created a short cut to intialize the environment and start running it.
+
+```
+./run install
+```
+
+This will copy the `.env` file, build and run docker and run initial migrations.
+
+
 #### The .env file
 
 The application requested doesn't need any special environmental variables since it doesn't have a need for secrets, API keys or environment specific configs.
@@ -158,7 +167,7 @@ I would not do this in any development situation! This is not a terrible securit
 For now, this is a no-op!
 
 
-#### Run Docker
+#### Build and Run Docker
 ```
 docker compose up --build
 ```
