@@ -86,8 +86,6 @@ Please deliver the result by November 27, 11 AM ET.
 ### How to use it
 
 
-
-
 The admin interface has access to browse the data. This could use more refinement but it works out of the box.
 http://localhost:8000/admin/
 
@@ -149,7 +147,13 @@ I've created a short cut to intialize the environment and start running it.
 ./run install
 ```
 
-This will copy the `.env` file, build and run docker and run initial migrations.
+This will copy the `.env` file and build and run docker.
+
+You'll still need to run migrations after the containers start up.
+
+```
+./run manage migrate
+```
 
 
 #### The .env file
@@ -175,7 +179,7 @@ docker compose up --build
 Once docker has initalized and is running you can visit the project at: <http://localhost:8000>
 
 
-### Initialize your environment
+#### Initialize your environment
 
 The first thing you'll want to do is run your migrations
 
@@ -183,7 +187,7 @@ The first thing you'll want to do is run your migrations
 ./run manage migrate
 ```
 
-Next, you'll need to new super user.
+If you want to visit the admin pages, you'll need to new super user. So, run this.
 ```
 ./run manage createsuperuser
 ```
