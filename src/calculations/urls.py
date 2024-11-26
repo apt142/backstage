@@ -1,7 +1,7 @@
 from django.urls import path
 
-# from calculations import views
+from calculations import views
 
 urlpatterns = [
-    # path("difference", views.index, name="index"),
+    path("difference", views.difference, name="difference"),
 ]
