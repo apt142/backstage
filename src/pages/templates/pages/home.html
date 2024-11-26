@@ -1,18 +1,58 @@
 {% extends "layouts/index.html" %}
 {% load static %}
 
-{% block title %}Docker + Django{% endblock %}
+{% block title %}Backstage Take Home{% endblock %}
 
 {% block body %}
   <div class="flex justify-center pt-24 pb-12 px-2 sm:px-0">
-    <img src="{% static 'images/django.png' %}"
-         width="480" height="167" alt="Django logo" />
+
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="n">
+          Value to Calculate
+        </label>
+        <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="n" name="n" type="text" placeholder="10">
+      </div>
+
+      <div class="mb-6">
+        <input type="submit" id="calculate" value="Calculate" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" >
+      </div>
+    </form>
+
+
+    <div id="result-panel" class="rounded px-8 pt-6 pb-8 mb-4">
+      <h2>Results!</h2>
+
+      <div class="results" id="results">
+
+      </div>
+    </div>
+
+
+    <script type="text/javascript">
+        /* 
+        I could do this with a frame work.
+        Or given how simple this is, 11 lines of jquery. 
+        Here is 10 lines of jquery
+        */
+
+        function show_results(data, status) {
+          var pretty_data = JSON.stringify(data, undefined, 4);
+          results_string = "<pre>" + pretty_data + "</pre>";
+          $('#results').html(results_string);
+        }
+
+        $(document).ready(function() {
+          $("#calculate").click(function(e) {
+              e.preventDefault();
+              n = $('#n').val();
+              $.get('/difference?n='+n, show_results); 
+          });
+        });
+    </script>
+
   </div>
 
-  <p class="text-center text-lg mt-6">
-   🐳 Learn the Docker fundamentals at:
-    <strong>
-      <a class="border-b border-gray-900 mb-1" href="https://diveintodocker.com?ref=docker-django-example">https://diveintodocker.com</a>
-    </strong>
-  </p>
+  
 {% endblock %}
