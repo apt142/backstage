@@ -12,7 +12,7 @@
         <label class="block text-gray-700 text-sm font-bold mb-2" for="n">
           Value to Calculate
         </label>
-        <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="n" name="n" type="text" placeholder="10">
+        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="n" name="n" type="text" placeholder="10">
       </div>
 
       <div class="mb-6">
@@ -33,7 +33,7 @@
     <script type="text/javascript">
         /* 
         I could do this with a frame work.
-        Or given how simple this is, 11 lines of jquery. 
+        Or given how simple this is, 15 lines of jquery. 
         Here is 10 lines of jquery
         */
 
@@ -47,7 +47,12 @@
           $("#calculate").click(function(e) {
               e.preventDefault();
               n = $('#n').val();
-              $.get('/difference?n='+n, show_results); 
+              $.get('/difference?n='+n, show_results)
+                .fail(function(e) {
+                  // I'm going to bubble up the errors so you can see the endpoint work.
+                  // Normally, I'd make the interface throw validation errors.
+                  show_results(e.responseJSON)
+                }) 
           });
         });
     </script>
